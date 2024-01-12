@@ -5,33 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Downloaders Tiktok Video</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-    body {
-      background-color: #343a40;
-      color: #ffffff;
-      background-image: url('background.jpg'); 
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .container {
-      margin-top: 50px;
-    }
-    .card {
-      background-color: #2c3037;
-      color: #ffffff; 
-    }
-    .download-buttons {
-      margin-top: 10px; 
-    }
-    .download-buttons button {
-      margin-right: 10px; 
-    }
-    .loading-spinner {
-      display: none; 
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
@@ -58,50 +32,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const fetchButton = document.getElementById('fetchTikTok');
-    const loadingSpinner = document.querySelector('.loading-spinner');
-    
-    fetchButton.addEventListener('click', function () {
-      const tiktokUrlInput = document.getElementById('tiktokUrl');
-      const tiktokContent = document.getElementById('tiktok-content');
-      function formatK(num) {
-        return new Intl.NumberFormat('en-US', {
-          notation: 'compact',
-          maximumFractionDigits: 1
-        }).format(num)
-      }
-      loadingSpinner.style.display = 'block';
-      fetch('https://skizo.tech/api/tiktok', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'https://skizo.tech'
-        },
-        body: JSON.stringify({
-          url: tiktokUrlInput.value
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        loadingSpinner.style.display = 'none';
-        tiktokContent.innerHTML = `
-          <iframe src="${data.data.play}" width="100%" height="200px" frameborder="50"></iframe>
-          <h5 class="card-title">${formatK(data.data.digg_count)} Likes, ${formatK(data.data.comment_count)} Comments. TikTok video from ${data.data.author.nickname} (@${data.data.author.unique_id}): ${data.data.title}. ${data.data.music_info.title}</h5>
-          <p class="card-text download-buttons">
-            <button class="btn btn-success" onclick="window.open('${data.data.play}', '_blank')">Download SD</button>
-            <button class="btn btn-warning" onclick="window.open('${data.data.hdplay}', '_blank')">Download HD</button>
-            <button class="btn btn-info" onclick="window.open('${data.data.music}', '_blank')">Download Music</button>
-          </p>
-        `;
-      })
-      .catch(error => {
-        loadingSpinner.style.display = 'none';
-        console.error('Error fetching TikTok data:', error);
-      });
-    });
-  });
-</script>
+<script src="script.js"></script>
 </body>
 </html>
