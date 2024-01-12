@@ -1,0 +1,25 @@
+body {
+  background-color: #343a40;
+  color: #ffffff;
+  background-image: url('background.jpg'); 
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin: 0;
+}
+.container {
+  margin-top: 50px;
+}
+.card {
+  background-color: #2c3037;
+  color: #ffffff; 
+}
+.download-buttons {
+  margin-top: 10px; 
+}
+.download-buttons button {
+  margin-right: 10px; 
+}
+.loading-spinner {
+  display: none; 
+}
