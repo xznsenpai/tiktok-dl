@@ -8,6 +8,9 @@ body {
   margin: 0;
 }
 .container {
+  background-color: rgba(0, 0, 0, 0.5); /* Warna latar belakang container dengan transparansi */
+  padding: 20px;
+  border-radius: 10px;
   margin-top: 50px;
 }
 .card {
