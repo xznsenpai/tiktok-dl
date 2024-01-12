@@ -1,1 +1,1 @@
-p
+<img src="background.jpg" alt="Screenshot 1">
