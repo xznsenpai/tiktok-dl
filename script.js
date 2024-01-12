@@ -1,33 +1,39 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const fetchButton = document.getElementById('fetchTikTok');
-  const loadingSpinner = document.querySelector('.loading-spinner');
+document.addEventListener('DOMContentLoaded', function() {
+	const fetchButton = document.getElementById('fetchTikTok');
+	const loadingSpinner = document.querySelector('.loading-spinner');
 
-  fetchButton.addEventListener('click', function () {
-    const tiktokUrlInput = document.getElementById('tiktokUrl');
-    const tiktokContent = document.getElementById('tiktok-content');
+	fetchButton.addEventListener('click', function() {
+		const tiktokUrlInput = document.getElementById('tiktokUrl');
+		const tiktokContent = document.getElementById('tiktok-content');
 
-    function formatK(num) {
-      return new Intl.NumberFormat('en-US', {
-        notation: 'compact',
-        maximumFractionDigits: 1
-      }).format(num);
-    }
+		function formatK(num) {
+			return new Intl.NumberFormat('en-US', {
+				notation: 'compact',
+				maximumFractionDigits: 1
+			}).format(num);
+		}
 
-    loadingSpinner.style.display = 'block';
-    fetch('https://skizo.tech/api/tiktok', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'https://skizo.tech'
-      },
-      body: JSON.stringify({
-        url: tiktokUrlInput.value
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      loadingSpinner.style.display = 'none';
-      tiktokContent.innerHTML = `
+		loadingSpinner.style.display = 'block';
+		fetch('https://skizo.tech/api/tiktok', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': 'https://skizo.tech'
+				},
+				body: JSON.stringify({
+					url: tiktokUrlInput.value
+				})
+			})
+			.then(response => response.json())
+			.then(data => {
+				loadingSpinner.style.display = 'none';
+				if (data.data?.images?.length) {
+					tiktokContent.innerHTML = "";
+					for (var x = 0; x < data.data.images.length; x++) {
+						tiktokContent.innerHTML += `<img src="${data.data.images[x]}" width="100%" height="25%"></img><br>`;
+					}
+				} else {
+					tiktokContent.innerHTML = `
         <iframe src="${data.data.play}" width="100%" height="200px" frameborder="50"></iframe>
         <h5 class="card-title">${formatK(data.data.digg_count)} Likes, ${formatK(data.data.comment_count)} Comments. TikTok video from ${data.data.author.nickname} (@${data.data.author.unique_id}): ${data.data.title}. ${data.data.music_info.title}</h5>
         <p class="card-text download-buttons">
@@ -36,10 +42,11 @@ document.addEventListener('DOMContentLoaded', function () {
           <button class="btn btn-info" onclick="window.open('${data.data.music}', '_blank')">Download Music</button>
         </p>
       `;
-    })
-    .catch(error => {
-      loadingSpinner.style.display = 'none';
-      console.error('Error fetching TikTok data:', error);
-    });
-  });
+				}
+			})
+			.catch(error => {
+				loadingSpinner.style.display = 'none';
+				console.error('Error fetching TikTok data:', error);
+			});
+	});
 });
