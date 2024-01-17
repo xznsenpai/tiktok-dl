@@ -1,8 +1,6 @@
 ![Screenshot 1](./img/ssweb.png)
 
 # 🚀 **Tiktok Downloaders**
-# 🔍 **Tiktok Search**
-# 🔥 **Tiktok Trending**
 ###
 Explore the live demo [here](https://xznsenpai.github.io/tiktok-dl/).
 
