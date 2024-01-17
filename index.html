@@ -11,24 +11,35 @@
 		<div class="container">
 			<div class="form-group">
 				<div class="form-group"> Tiktok Downloaders </div>
-				<div class="form-group">
-					<div class="form-group">
-						<label for="tiktokUrl">Enter TikTok URL:</label>
-						<input type="text" class="form-control" id="tiktokUrl" placeholder="https://www.tiktok.com/@username/video/1234567890">
+				<div id="tiktok-content" class="mt-4">
+					<ul class="list-unstyled">
+						<li>
+							<ol>
+								<li>Copy link of some tiktok video</li>
+								<li>Paste link in text box</li>
+								<li>Click the Get</li>
+								<li>Watch and Download the video without watermark</li>
+							</ol>
+						</li>
+					</ul>
+				</div>
+				<div class="mb-3">
+					<label class="form-label">Tiktok <span class="text-danger">*</span>
+					</label>
+					<input type="text" class="form-control" id="tiktokUrl" placeholder="https://www.tiktok.com/@username/video/1234567890">
+				</div>
+				<button class="btn btn-primary btn-lg d-block w-100 fw-500 mb-3" id="fetchTikTok">Fetch TikTok</button>
+				<div class="loading-spinner text-center">
+					<div class="spinner-border text-light" role="status">
+						<span class="sr-only">Loading...</span>
 					</div>
-					<button class="btn btn-primary" id="fetchTikTok">Fetch TikTok</button>
-					<div class="loading-spinner text-center">
-						<div class="spinner-border text-light" role="status">
-							<span class="sr-only">Loading...</span>
-						</div>
-					</div>
-					<div id="tiktok-content" class="mt-4"></div>
 				</div>
 			</div>
+		</div>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-		<script src="./js/tiktokdl.js"></script>
+		<script src="js/tiktokdl.js"></script>
 	</body>
 </html>
